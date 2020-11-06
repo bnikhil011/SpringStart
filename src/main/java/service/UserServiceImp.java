@@ -14,8 +14,8 @@ public class UserServiceImp implements UserService {
 	}
 
 	public boolean addUser(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return  this.userdata.addUser(user);
 	}
 
 	public boolean removeUser(User user) {
@@ -30,7 +30,7 @@ public class UserServiceImp implements UserService {
 
 	public List giveAllUsers() {
 		// TODO Auto-generated method stub
-		return null;
+		return userdata.giveAllUsers();
 	}
 	
 

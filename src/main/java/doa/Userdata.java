@@ -11,6 +11,15 @@ public class Userdata {
 	private static Collection <User> UserList = new ArrayList();
 	public boolean addUser(User user)
 	{
+		try {
+			UserList.add(user);
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			System.out.println("Exception occured "+e);
+		}
 		
 		return false;
 	}
@@ -28,7 +37,7 @@ public class Userdata {
 	
 	public List giveAllUsers() {
 		// TODO Auto-generated method stub
-		return null;
+		return (List)UserList;
 	}
 	
 

@@ -3,12 +3,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<bean id="BlankUser" class="model.User">
+<bean id="BlankUser" class="model.User" scope="prototype">
 
 <constructor-arg value="1"></constructor-arg>
 </bean>
 
-<bean id="TestUser" class="model.User">
+<bean id="TestUser" class="model.User" scope="prototype">
 	<constructor-arg value="Nikhil"></constructor-arg>
 	<constructor-arg value="nikbhara"></constructor-arg>
 	<constructor-arg value="n@369258"></constructor-arg>
