@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="BlankUser" class="model.User">
+
+<constructor-arg value="1"></constructor-arg>
+</bean>
+
+<bean id="TestUser" class="model.User">
+	<constructor-arg value="Nikhil"></constructor-arg>
+	<constructor-arg value="nikbhara"></constructor-arg>
+	<constructor-arg value="n@369258"></constructor-arg>
+	<constructor-arg>
+	<list>
+		<value>"Rahul"</value>
+		<value>"Ritesh"</value>
+		<value>"Suresh"</value>
+		</list>
+	</constructor-arg>
+	<constructor-arg value="1"></constructor-arg>
+</bean>
+
+<bean id="Userservice" class="service.UserServiceImp" scope="singleton">
+<constructor-arg ref="Userdata"></constructor-arg>
+</bean>
+
+<bean id="Userdata" class="doa.Userdata" scope="singleton"></bean>
+
+</beans>
