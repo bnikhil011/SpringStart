@@ -1,18 +1,23 @@
 package doa;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import model.User;
 
-public class Userdata {
+public class Userdata implements Serializable {
 	
-	private static Collection <User> UserList = new ArrayList();
+	private  Collection <User> UserList = new ArrayList();
+	
+	
+	
+	
 	public boolean addUser(User user)
 	{
 		try {
-			UserList.add(user);
+			this.UserList.add(user);
 			return true;
 		}
 		catch(Exception e)
@@ -26,7 +31,7 @@ public class Userdata {
 	
 	public  boolean removeUser(String userid)
 	{
-		for (User user : UserList)
+		for (User user : this.UserList)
 		{
 			if(user.getUserid().equals(userid))
 				{
@@ -40,7 +45,7 @@ public class Userdata {
 	}
 	public boolean updateUser(User user)
 	{
-		for (User exixuser : UserList)
+		for (User exixuser : this.UserList)
 		{
 			if(exixuser.getUserid().equals(user.getUserid()))
 				{
@@ -55,12 +60,12 @@ public class Userdata {
 	}
 	
 	public List giveAllUsers() {
-		if(UserList.isEmpty())
+		if(this.UserList.isEmpty())
 		{
 			System.out.println("List is Empty");
 			return null;
 		}
-		return (List)UserList;
+		return (List)this.UserList;
 	}
 	
 
