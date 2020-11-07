@@ -35,11 +35,18 @@ public class UserServiceImp implements UserService {
 	}
 
 	public boolean isAvilable(String userId) {
-		ArrayList <User>list = (ArrayList)giveAllUsers();
+		try{
+			ArrayList <User>list = (ArrayList)giveAllUsers();
+		
 		for(User u:list)
 		{
 			if(u.getUserid().equals(userId))
 				return true;
+		}
+		}
+		catch(Exception e)
+		{
+			System.out.println("");
 		}
 		return false;
 	}

@@ -98,13 +98,24 @@ public class Mainclass {
 		System.out.println("Enter User password");
 		user.setPassword(sc.nextLine());
 		
-		System.out.println("Enter friend names, 0 to exit ");
+		
 		while(true)
 		{
+			System.out.println("Enter friend userid, 0 to exit ");
 			String friend = sc.nextLine();
 			if(friend.equals("0"))
 				break;
-		user.getFriends().add(friend);
+			if(userServiceImp.isAvilable(friend))
+				{	try{
+						
+							user.getFriends().add(friend);
+						}
+				catch(Exception e) {
+				System.out.println(e);
+				}
+				}
+			else
+				System.out.println("user not avilable with this user id ");
 		}
 		
 		return user;
@@ -122,10 +133,21 @@ public class Mainclass {
 		System.out.println("Enter friend names, 0 to exit ");
 		while(true)
 		{
+			System.out.println("Enter friend userid, 0 to exit ");
 			String friend = sc.nextLine();
 			if(friend.equals("0"))
 				break;
-		user.getFriends().add(friend);
+			if(userServiceImp.isAvilable(friend))
+				{	try{
+						
+							user.getFriends().add(friend);
+						}
+				catch(Exception e) {
+				System.out.println(e);
+				}
+				}
+			else
+				System.out.println("user not avilable with this user id ");
 		}
 		
 		return user;
