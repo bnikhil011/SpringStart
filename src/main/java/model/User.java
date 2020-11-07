@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class User {
+public class User implements Serializable {
 	/**
 	 * @param name  : User name
 	 * @param userid : User id with which user will login

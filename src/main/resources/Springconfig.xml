@@ -23,9 +23,11 @@
 </bean>
 
 <bean id="Userservice" class="service.UserServiceImp" scope="singleton">
-<constructor-arg ref="Userdata"></constructor-arg>
+<constructor-arg ref="SerilazerandDerilazer"></constructor-arg>
 </bean>
 
 <bean id="Userdata" class="doa.Userdata" scope="singleton"></bean>
+
+<bean id="SerilazerandDerilazer" class="service.DataDeserializerandSerilizer" scope="singleton"></bean>
 
 </beans>

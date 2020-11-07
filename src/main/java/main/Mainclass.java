@@ -9,6 +9,7 @@ import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.FileSystemResource;
 
 import model.User;
+import service.DataDeserializerandSerilizer;
 import service.UserServiceImp;
 
 public class Mainclass {
@@ -18,12 +19,15 @@ public class Mainclass {
 	public static void main(String[] args) {
 		
 		BeanFactory factory = new XmlBeanFactory(new FileSystemResource("C:\\Users\\WELCOME\\Documents\\workspace-sts-3.9.14.RELEASE\\SpringAgainStart\\src\\main\\resources\\Springconfig.xml"));
-		while(true)
+		userServiceImp = factory.getBean("Userservice",UserServiceImp.class);
+		
+	     while(true)
 		{
 			System.out.println("Enter 0 to exit 1 to continue");
 			if (sc.nextInt()==0)
 			{
 				sc.nextLine();
+				userServiceImp.serializedata();
 				break;
 			}
 			int action ;
@@ -33,7 +37,7 @@ public class Mainclass {
 			if(action==1)
 			{
 				User user = factory.getBean("BlankUser",User.class);
-				userServiceImp= factory.getBean("Userservice",UserServiceImp.class);
+				
 				user = getUserdata(user);
 				if(!userServiceImp.isAvilable(user.getUserid()) && userServiceImp.addUser(user))
 					System.out.println("User added Sucessfully");
@@ -98,13 +102,24 @@ public class Mainclass {
 		System.out.println("Enter User password");
 		user.setPassword(sc.nextLine());
 		
-		System.out.println("Enter friend names, 0 to exit ");
+		
 		while(true)
 		{
+			System.out.println("Enter friend userid, 0 to exit ");
 			String friend = sc.nextLine();
 			if(friend.equals("0"))
 				break;
-		user.getFriends().add(friend);
+			if(userServiceImp.isAvilable(friend))
+				{	try{
+						
+							user.getFriends().add(friend);
+						}
+				catch(Exception e) {
+				System.out.println(e);
+				}
+				}
+			else
+				System.out.println("user not avilable with this user id ");
 		}
 		
 		return user;
@@ -122,10 +137,21 @@ public class Mainclass {
 		System.out.println("Enter friend names, 0 to exit ");
 		while(true)
 		{
+			System.out.println("Enter friend userid, 0 to exit ");
 			String friend = sc.nextLine();
 			if(friend.equals("0"))
 				break;
-		user.getFriends().add(friend);
+			if(userServiceImp.isAvilable(friend))
+				{	try{
+						
+							user.getFriends().add(friend);
+						}
+				catch(Exception e) {
+				System.out.println(e);
+				}
+				}
+			else
+				System.out.println("user not avilable with this user id ");
 		}
 		
 		return user;
