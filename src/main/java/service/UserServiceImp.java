@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import doa.Userdata;
@@ -18,19 +19,29 @@ public class UserServiceImp implements UserService {
 		return  this.userdata.addUser(user);
 	}
 
-	public boolean removeUser(User user) {
+	public boolean removeUser(String userid) {
 		// TODO Auto-generated method stub
-		return false;
+		return this.userdata.removeUser(userid);
 	}
 
 	public boolean updateUser(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		return userdata.updateUser(user);
+		
 	}
 
 	public List giveAllUsers() {
 		// TODO Auto-generated method stub
 		return userdata.giveAllUsers();
+	}
+
+	public boolean isAvilable(String userId) {
+		ArrayList <User>list = (ArrayList)giveAllUsers();
+		for(User u:list)
+		{
+			if(u.getUserid().equals(userId))
+				return true;
+		}
+		return false;
 	}
 	
 

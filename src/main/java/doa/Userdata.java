@@ -13,7 +13,7 @@ public class Userdata {
 	{
 		try {
 			UserList.add(user);
-			
+			return true;
 		}
 		catch(Exception e)
 		{
@@ -24,19 +24,42 @@ public class Userdata {
 		return false;
 	}
 	
-	private boolean removeUser(User user)
+	public  boolean removeUser(String userid)
 	{
+		for (User user : UserList)
+		{
+			if(user.getUserid().equals(userid))
+				{
+					UserList.remove(user);
+					return true;
+				}
+			
+		}
 		
 		return false;
 	}
 	public boolean updateUser(User user)
 	{
-		
+		for (User exixuser : UserList)
+		{
+			if(exixuser.getUserid().equals(user.getUserid()))
+				{
+					exixuser.setName(user.getName());
+					exixuser.setFriends(user.getFriends());
+					exixuser.setPassword(user.getPassword());
+					
+					return true;
+				}
+		}
 		return false;
 	}
 	
 	public List giveAllUsers() {
-		// TODO Auto-generated method stub
+		if(UserList.isEmpty())
+		{
+			System.out.println("List is Empty");
+			return null;
+		}
 		return (List)UserList;
 	}
 	

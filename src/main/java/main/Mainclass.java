@@ -22,25 +22,56 @@ public class Mainclass {
 		{
 			System.out.println("Enter 0 to exit 1 to continue");
 			if (sc.nextInt()==0)
+			{
+				sc.nextLine();
 				break;
+			}
 			int action ;
 			System.out.println("1 to add user \n2 to delete user \n3 to Update User \n4 to get all User");
 			action = sc.nextInt();
+			sc.nextLine();
 			if(action==1)
 			{
 				User user = factory.getBean("BlankUser",User.class);
 				userServiceImp= factory.getBean("Userservice",UserServiceImp.class);
 				user = getUserdata(user);
-				if(userServiceImp.addUser(user))
+				if(!userServiceImp.isAvilable(user.getUserid()) && userServiceImp.addUser(user))
 					System.out.println("User added Sucessfully");
+				else
+				{
+					try {
 				
+					throw new Exception("User id already exist , User some other id ");
+				
+					}
+					
+					catch(Exception e)
+					{
+						System.out.println(e);
+					}
+				}
 			}
 			else if(action==2)
-			{
-				
+			{	System.out.println("Enter User id of whome u want to delete ");
+				String userid = sc.nextLine();
+				if (userServiceImp.removeUser(userid))
+					System.out.println("User removed sucessfully");
+				else
+					System.out.println("User doesn't exixt with this id");
 			}
 			else if (action ==3)
-			{
+			{	System.out.println("Enter User id of whome u want to update ");
+				String userid = sc.nextLine();
+				if (userServiceImp.isAvilable(userid))
+					{	
+						User updateuser = factory.getBean("BlankUser",User.class);
+						updateuser = getUpdatedUserdata(updateuser);
+						userServiceImp.updateUser(updateuser);
+						System.out.println("User Updated sucessfully");
+					}
+				else
+					System.out.println("User doesn't exixt with this id");
+				
 				
 			}
 			else
@@ -63,6 +94,27 @@ public class Mainclass {
 		
 		System.out.println("Enter User id");
 		user.setUserid(sc.nextLine());
+		
+		System.out.println("Enter User password");
+		user.setPassword(sc.nextLine());
+		
+		System.out.println("Enter friend names, 0 to exit ");
+		while(true)
+		{
+			String friend = sc.nextLine();
+			if(friend.equals("0"))
+				break;
+		user.getFriends().add(friend);
+		}
+		
+		return user;
+	}
+	
+	public static User getUpdatedUserdata(User user)
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter User Name");
+		user.setName(sc.nextLine());
 		
 		System.out.println("Enter User password");
 		user.setPassword(sc.nextLine());
