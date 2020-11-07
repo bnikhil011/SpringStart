@@ -66,6 +66,14 @@ public class User {
 		return "User [name=" + name + ", userid=" + userid + ", password=" + password + ", fiends=" + friends + ", num="+num+"]";
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		User u = (User)obj;
+		if(this.userid.equals(u.getUserid()))
+		{return true;}
+			
+		return false;
+	}
 	
 	
 
