@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.FileSystemResource;
 
 import model.User;
@@ -18,8 +20,11 @@ public class Mainclass {
 	private static UserServiceImp userServiceImp ;
 	public static void main(String[] args) {
 		
-		BeanFactory factory = new XmlBeanFactory(new FileSystemResource("C:\\Users\\WELCOME\\Documents\\workspace-sts-3.9.14.RELEASE\\SpringAgainStart\\src\\main\\resources\\Springconfig.xml"));
-		userServiceImp = factory.getBean("Userservice",UserServiceImp.class);
+
+		//BeanFactory factory = new XmlBeanFactory(new FileSystemResource("C:\\Users\\WELCOME\\Documents\\workspace-sts-3.9.14.RELEASE\\SpringAgainStart\\src\\main\\resources\\Springconfig.xml"));
+		ApplicationContext context = new ClassPathXmlApplicationContext("C:\\\\Users\\\\WELCOME\\\\Documents\\\\workspace-sts-3.9.14.RELEASE\\\\SpringAgainStart\\\\src\\\\main\\\\resources\\\\Springconfig.xml");
+		userServiceImp = context.getBean("Userservice",UserServiceImp.class);
+
 		
 	     while(true)
 		{
@@ -36,7 +41,9 @@ public class Mainclass {
 			sc.nextLine();
 			if(action==1)
 			{
-				User user = factory.getBean("BlankUser",User.class);
+
+				User user = context.getBean("BlankUser",User.class);
+
 				
 				user = getUserdata(user);
 				if(!userServiceImp.isAvilable(user.getUserid()) && userServiceImp.addUser(user))
@@ -68,7 +75,7 @@ public class Mainclass {
 				String userid = sc.nextLine();
 				if (userServiceImp.isAvilable(userid))
 					{	
-						User updateuser = factory.getBean("BlankUser",User.class);
+						User updateuser = context.getBean("BlankUser",User.class);
 						updateuser = getUpdatedUserdata(updateuser);
 						userServiceImp.updateUser(updateuser);
 						System.out.println("User Updated sucessfully");
@@ -151,7 +158,7 @@ public class Mainclass {
 				}
 				}
 			else
-				System.out.println("user not avilable with this user id ");
+				System.out.println("user not avilable with this user id");
 		}
 		
 		return user;
