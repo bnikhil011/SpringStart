@@ -20,9 +20,11 @@ public class Mainclass {
 	private static UserServiceImp userServiceImp ;
 	public static void main(String[] args) {
 		
+
 		//BeanFactory factory = new XmlBeanFactory(new FileSystemResource("C:\\Users\\WELCOME\\Documents\\workspace-sts-3.9.14.RELEASE\\SpringAgainStart\\src\\main\\resources\\Springconfig.xml"));
 		ApplicationContext context = new ClassPathXmlApplicationContext("C:\\\\Users\\\\WELCOME\\\\Documents\\\\workspace-sts-3.9.14.RELEASE\\\\SpringAgainStart\\\\src\\\\main\\\\resources\\\\Springconfig.xml");
 		userServiceImp = context.getBean("Userservice",UserServiceImp.class);
+
 		
 	     while(true)
 		{
@@ -39,7 +41,9 @@ public class Mainclass {
 			sc.nextLine();
 			if(action==1)
 			{
+
 				User user = context.getBean("BlankUser",User.class);
+
 				
 				user = getUserdata(user);
 				if(!userServiceImp.isAvilable(user.getUserid()) && userServiceImp.addUser(user))
